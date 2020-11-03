@@ -22,6 +22,9 @@ def get_unit_status(unit_code, start, end, session=None):
     except IndexError:
         # No data available.
         return None
+    except json.decoder.JSONDecodeError:
+        # server broken?
+        return None
 
     state = float(latest["SCADAVALUE"])
 
